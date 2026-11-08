@@ -1,0 +1,40 @@
+body {
+    background-color: #7db4eb;
+    color: #000000;
+}
+
+h1 {
+    text-shadow: 3px 3px 3px #0008;
+}
+
+.window {
+    position: fixed;
+    left: 100px;
+    top: 100px;
+
+    width: 360px;
+    border-radius: 8px;
+    overflow: hidden;
+
+    background: #e8eff7;
+    color: #202020;
+    box-shadow: 0 8px 24px #0006;
+}
+
+.titlebar {
+    padding: 10px 14px;
+    background: linear-gradient(#91c8f5, #417eac);
+
+    color: white;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+}
+
+.titlebar:active {
+    cursor: grabbing;
+}
+
+.content {
+    padding: 16px;
+}
