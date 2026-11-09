@@ -171,7 +171,90 @@ document.querySelectorAll(".close-button").forEach((button) => {
         const panel = button.closest(".window");
 
         if (panel) {
-            panel.classList.add("closed");
+            panel.classList.remove("closed", "minimized");
         }
     });
 });
+
+const taskbarButtons = document.querySelectorAll(".taskbar-app");
+const managedWindows = document.querySelectorAll(".window, .clock-window");
+
+function updateTaskbar() {
+    const visible = [...managedWindows].filter((win) =>
+        !win.classList.contains("closed") &&
+        !win.classList.contains("minimized")
+    );
+
+    const highest = Math.max(
+        0,
+        ...visible.map((win) => Number(win.style.zIndex) || 0)
+    );
+
+    for (const button of taskbarButtons) {
+        const win = document.getElementById(button.dataset.target);
+
+        if (!win) {
+            continue;
+        }
+
+        button.classList.toggle(
+            "running",
+            !win.classList.contains("closed")
+        );
+
+        button.classList.toggle(
+            "active",
+            visible.includes(win) &&
+            Number(win.style.zIndex) === highest
+        );
+    }
+}
+
+for (const button of taskbarButtons) {
+    button.addEventListener("click", () => {
+        const win = document.getElementById(button.dataset.target);
+
+        if (!win) {
+            return;
+        }
+
+        if (button.classList.contains("active")) {
+            win.classList.add("minimized");
+        }
+        else {
+            win.classList.remove("closed", "minimized");
+            win.style.zIndex = ++topZIndex;
+        }
+
+        updateTaskbar();
+    });
+}
+
+// 既存のドラッグ・クリック処理が動いたあとに表示を更新
+for (const win of managedWindows) {
+    win.addEventListener("pointerdown", updateTaskbar, true);
+}
+
+// デスクトップアイコンや×ボタンからの変更にも追従
+document.querySelectorAll(".desktop-icon").forEach((icon) => {
+    icon.addEventListener("dblclick", updateTaskbar);
+});
+
+document.querySelectorAll(".close-button").forEach((button) => {
+    button.addEventListener("click", updateTaskbar);
+});
+
+// タスクバー右端の時刻
+const taskbarTime = document.getElementById("taskbar-time");
+
+function updateTaskbarTime() {
+    taskbarTime.textContent = new Date().toLocaleTimeString("ja-JP", {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+}
+
+updateTaskbarTime();
+setInterval(updateTaskbarTime, 1000);
+
+updateTaskbar();

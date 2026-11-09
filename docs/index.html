@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="style.css">
     <script src="window.js" defer></script>
     <script src="clock.js" defer></script>
+    <script src="calculator.js" defer></script>
 </head>
 <body>
     <h1>Welcome to RDTUtilities!</h1>
 
     <p>We are under construction...</p>
 
-    <div class="window">
+    <div id="rdt-window" class="window">
         <div class="titlebar">RDTUtilities</div>
         <div class="content">
             <p>Hello, world!</p>
@@ -31,7 +32,7 @@
         <div class="resize-handle" data-corner="e"></div>
     </div>
 
-    <div class="clock-window">
+    <div id="clock-window" class="clock-window">
         <canvas id="clock" width="300" height="300"></canvas>
     </div>
 
@@ -46,8 +47,40 @@
             <button class="close-button" type="button">×</button>
         </div>
 
-        <div class="content">
-            <p><i>Increment it!</i></p>
+        <div class="content calculator-content">
+            <output class="calc-display">0</output>
+
+            <div class="calc-keys">
+                <button class="calc-key" value="(">(</button>
+                <button class="calc-key" value=")">)</button>
+                <button class="calc-key" data-action="clear">C</button>
+                <button class="calc-key" data-action="backspace">⌫</button>
+
+                <button class="calc-key" disabled>1/x</button>
+                <button class="calc-key" disabled>x²</button>
+                <button class="calc-key" disabled>√x</button>
+                <button class="calc-key operator" value="÷">÷</button>
+
+                <button class="calc-key" value="7">7</button>
+                <button class="calc-key" value="8">8</button>
+                <button class="calc-key" value="9">9</button>
+                <button class="calc-key operator" value="×">×</button>
+
+                <button class="calc-key" value="4">4</button>
+                <button class="calc-key" value="5">5</button>
+                <button class="calc-key" value="6">6</button>
+                <button class="calc-key operator" value="-">−</button>
+
+                <button class="calc-key" value="1">1</button>
+                <button class="calc-key" value="2">2</button>
+                <button class="calc-key" value="3">3</button>
+                <button class="calc-key operator" value="+">+</button>
+
+                <button class="calc-key" disabled>±</button>
+                <button class="calc-key" value="0">0</button>
+                <button class="calc-key" value=".">.</button>
+                <button class="calc-key equals" data-action="equals">=</button>
+            </div>
         </div>
 
         <div class="resize-handle" data-corner="nw"></div>
@@ -59,6 +92,24 @@
         <div class="resize-handle" data-corner="s"></div>
         <div class="resize-handle" data-corner="w"></div>
         <div class="resize-handle" data-corner="e"></div>
+    </div>
+
+    <div class="taskbar">
+        <span class="taskbar-logo">⊞</span>
+
+        <button class="taskbar-app" data-target="rdt-window" title="RDTUtilities">
+            RDT
+        </button>
+
+        <button class="taskbar-app" data-target="calculator-window" title="Calculator">
+            ▦
+        </button>
+
+        <button class="taskbar-app" data-target="clock-window" title="Clock">
+            ◷
+        </button>
+
+        <span class="taskbar-time" id="taskbar-time"></span>
     </div>
 </body>
 </html>
