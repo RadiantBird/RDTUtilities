@@ -34,5 +34,31 @@
     <div class="clock-window">
         <canvas id="clock" width="300" height="300"></canvas>
     </div>
+
+    <button class="desktop-icon" data-target="calculator-window">
+        <span class="desktop-icon-symbol">▦</span>
+        <span>Calculator</span>
+    </button>
+
+    <div id="calculator-window" class="window closed">
+        <div class="titlebar">
+            <span>Calculator</span>
+            <button class="close-button" type="button">×</button>
+        </div>
+
+        <div class="content">
+            <p><i>Increment it!</i></p>
+        </div>
+
+        <div class="resize-handle" data-corner="nw"></div>
+        <div class="resize-handle" data-corner="ne"></div>
+        <div class="resize-handle" data-corner="sw"></div>
+        <div class="resize-handle" data-corner="se"></div>
+
+        <div class="resize-handle" data-corner="n"></div>
+        <div class="resize-handle" data-corner="s"></div>
+        <div class="resize-handle" data-corner="w"></div>
+        <div class="resize-handle" data-corner="e"></div>
+    </div>
 </body>
 </html>

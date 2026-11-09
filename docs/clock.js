@@ -88,7 +88,7 @@ function drawClock(now) {
     ctx.fillStyle = "#202020";
     ctx.font = "20px monospace";
     ctx.textAlign = "center";
-    ctx.fillText(time, cx, 275);
+    ctx.fillText(time, cx, 125);
 }
 
 function tick() {

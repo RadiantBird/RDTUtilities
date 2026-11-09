@@ -1,5 +1,6 @@
 body {
     background-color: #7db4eb;
+    /* background-color: #000000; */
     color: #000000;
 }
 
@@ -74,6 +75,9 @@ h1 {
 .window {
     display: flex;
     flex-direction: column;
+
+    --frame-padding: 9px;
+    padding: var(--frame-padding);
 }
 
 .content {
@@ -223,4 +227,74 @@ h1 {
         #ffffff18 45%,
         transparent 60%
     );
+}
+
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    width: 90px;
+    padding: 8px;
+
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+
+    color: white;
+    text-shadow: 0 1px 3px #0008;
+
+    cursor: default;
+    user-select: none;
+}
+
+.desktop-icon-symbol {
+    font-size: 36px;
+    text-shadow: 0 2px 5px #0006;
+}
+
+.desktop-icon:hover {
+    background: #ffffff22;
+    border-color: #ffffff55;
+}
+
+.titlebar {
+    display: flex;
+    align-items: center;
+}
+
+.close-button {
+    margin-left: auto;
+
+    width: 56px;
+    height: 28px;
+
+    position: absolute;
+    top: 0;
+    right: var(--frame-padding);
+
+    margin-left: 0;
+
+    background: linear-gradient(#ffc1c1, #d33e3e);
+    border: 1px solid #ffffff88;
+    border-radius: 3px;
+
+    color: white;
+    font-size: 22px;
+    line-height: 1;
+    font-weight: bold;
+    -webkit-text-stroke: 0.5px black;
+
+    cursor: pointer;
+    box-shadow: inset 0 1px 2px #ffffff66;
+}
+
+.close-button:hover {
+    background: linear-gradient(#f3abab, #d83b3b);
+}
+
+.window.closed,
+.clock-window.closed {
+    display: none;
 }
